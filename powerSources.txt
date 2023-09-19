@@ -1,12 +1,12 @@
-Ellis Nagar|+9.9146|+78.1145|Solar|TNEB Substation|9.913700|78.105090|Gogreen|100kW
-Kamuthi|+9.4097|+78.3643|Solar|Kamuthi 400kV Substation Sengappadai|9.46912995084518|78.4041097311129|Adani|648MW
-Thanjavur|+10.7867|+ 79.1378|Solar|TNEB 110 KV SUB STATION Jayalakshmi Nagar|10.754091382578082|79.09431893681109|None
-Coimbatore|+11.0168|+76.9558|Solar|EB Substation Peelamedu|11.130894105259216|77.0185723459008|Motosun Energy System|25kW
-Tiruchirappalli|+10.7905|+78.7047|Solar|TNEB Substation Tiruchirappalli|10.7895610967378|78.72451900709989|None
-Tiruvallur|13.1422|79.9073|Solar|TNEB Substation Tiruvallur|13.304225253923859|80.30119222102648|Winpro Power Solutions|100kW
-Kanchipuram| 12.8393°|79.7036|Solar|TNEB Substation Kanchipuram|12.444260719474789|80.0204347134951|None
-Salem|11.6643| 78.1460|Solar|TNEB Substation Salem|11.722068192840178|77.99118599438071|Abiraams Associate Solar Energy|300kW
-Raja Annamalai Puram|13.0277|80.2593|Solar|TNEB Substation R.K Puram|19.308115673967777|84.52241370434993|Renewable Energy India Expo|40kW
-Thirumangalam|9.8417°|77.9831|Solar|TNEB Substation Thirumangalam|13.11591433236724|80.20159105706868|Naturo Energy Tech|350MW
+Ellis Nagar|9.9146|78.1145|Solar|TNEB Substation|9.913700|78.105090|Gogreen|100000
+Kamuthi|9.4097|78.3643|Solar|Kamuthi 400kV Substation Sengappadai|9.46912995084518|78.4041097311129|Adani|648000000
+Thanjavur|10.7867|79.1378|Solar|TNEB 110 KV SUB STATION Jayalakshmi Nagar|10.754091382578082|79.09431893681109|None
+Coimbatore|11.0168|76.9558|Solar|EB Substation Peelamedu|11.130894105259216|77.0185723459008|Motosun Energy System|25000
+Tiruchirappalli|10.7905|78.7047|Solar|TNEB Substation Tiruchirappalli|10.7895610967378|78.72451900709989|None
+Tiruvallur|13.1422|79.9073|Solar|TNEB Substation Tiruvallur|13.304225253923859|80.30119222102648|Winpro Power Solutions|100000
+Kanchipuram|12.8393|79.7036|Solar|TNEB Substation Kanchipuram|12.444260719474789|80.0204347134951|None
+Salem|11.6643|78.1460|Solar|TNEB Substation Salem|11.722068192840178|77.99118599438071|Abiraams Associate Solar Energy|300000
+Raja Annamalai Puram|13.0277|80.2593|Solar|TNEB Substation R.K Puram|19.308115673967777|84.52241370434993|Renewable Energy India Expo|40000
+Thirumangalam|9.8417|77.9831|Solar|TNEB Substation Thirumangalam|13.11591433236724|80.20159105706868|Naturo Energy Tech|350000000
 Pallipalayam|11.0734|77.9945|Solar|TNEB Substation Pallipalayam|11.50735772183619|77.77894922672856|None
-Kilpauk|13.0846|80.2496|Solar|Kilpauk Substation |13.093926838453998|80.23342354367374|Grand Solar Private Limited|56MW
+Kilpauk|13.0846|80.2496|Solar|Kilpauk Substation |13.093926838453998|80.23342354367374|Grand Solar Private Limited|56000000

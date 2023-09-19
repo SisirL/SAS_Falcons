@@ -1,16 +1,113 @@
 import mysql.connector as connector
+"""
+Exceptions:
+Exception for database does not exist - 1049 (42000): Unknown database 'psdatabase'
+Exception for table does not exist - 1146 (42S02): Table 'psdatabase.data' doesn't exist
+
+Format for table:
+Location|Latitude|Longitude|Type of source|Nearest Power Substation|Latitude of SS|Longituse of SS|If active plant exists|If yes power supply capacity else none
+
+Create Table command:
+create table data(
+location varchar(40),
+latitudeL float,
+longitudeL float,
+sourceType varchar(20),
+nearestSubstation varchar(40),
+latitudeSS float,
+longitudeSS float,
+plantOwner varchar(40),
+plantCapacity float
+);
+"""
+pwd = "0409"
 
 
 def init_db():
     global connection
+    dbError = None
     try:
-        connection = connector.connect(host = "localhost", user = "root", password = "0409")
+        connection = connector.connect(host = "localhost", user = "root", password = pwd, database = "psdatabase")
         print("Connected")
     except Exception as exp:
-        print(repr(exp))
-    if not connection.is_connected():
-        print("Connection failed")
+        dbError = str(exp)
+    if dbError == "1049 (42000): Unknown database 'psdatabase'":
+        connection = connector.connect(host = "localhost", user = "root", password = pwd)
+        dbCursor = connection.cursor()
+        dbCursor.execute("create database PSDataBase;")
+        print("Database Created")
+        dbCursor.close()
+    if dbError != None and dbError != "1049 (42000): Unknown database 'psdatabase'":
+        print("Unsolvable Error Encountered")
     return
 
+
+def createTable():
+    tableCursor = connection.cursor()
+    tableError = None
+    tableCursor.execute("use psdatabase;")
+    try:
+        tableCursor.execute("select * from data;")
+        print(tableCursor.fetchall())
+    except Exception as exp:
+        tableError = str(exp)
+    if tableError == "1146 (42S02): Table 'psdatabase.data' doesn't exist":
+        tableCursor.execute("create table data(location varchar(40), latitudeL float, longitudeL float, sourceType varchar(20), nearestSubstation varchar(40), latitudeSS float, longitudeSS float, plantOwner varchar(40), plantCapacity float);")
+        print(tableCursor.fetchall())
+        connection.commit()
+        print("Table created")
+    if tableError == None:
+        print("Table detected")
+    tableCursor.close()
+    return
+
+
+def get_columns_query(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
+        if limit is not None:
+            if not (isinstance(limit, (int, str))): return []
+        query = f'select {", ".join(columns)} from {tablename}'
+        if constraint is not None:
+            if constraint[1] == "NULL":
+                query += f" where {constraint[0]} is null"
+            else:
+                query += f" where {constraint[0]} like \"{constraint[1]}\""
+        if order_by_col is not None:
+            if len(order_by_col) == len(order_by_asc): 
+                query += ' order by'
+                for (col_name, order) in zip(order_by_col, order_by_asc):
+                    query += f" {col_name} {'asc' if order else 'desc'}"
+        if limit is not None:
+            query += f" limit {limit!s}"
+        query += ';'
+        return query
+
+    
+def get_columns(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
+    query = get_columns_query(tablename=tablename, columns=columns, constraint=constraint, limit=limit, order_by_col=order_by_col, order_by_asc=order_by_asc)
+    cursor = connection.cursor()
+    cursor.execute(query)
+    data = cursor.fetchall()
+    cursor.close()
+    return data
+
+
+def readFile():
+    global dataList
+    dataList = []
+    textFile = open("powerSources.txt", 'r')
+    fileList = textFile.readlines()
+    for i in fileList:
+        tempList = []
+        for j in i.split('|'):
+            tempList.append(j.strip())
+        dataList.append(tempList)
+    print(dataList)
+    textFile.close()
+    return
+
+
 #__main()__
+
 init_db()
+createTable()
+readFile()

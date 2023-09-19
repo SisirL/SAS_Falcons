@@ -9,15 +9,15 @@ Location|Latitude|Longitude|Type of source|Nearest Power Substation|Latitude of 
 
 Create Table command:
 create table data(
-location varchar(40),
-latitudeL float,
-longitudeL float,
+location varchar(60),
+latitudeL double,
+longitudeL double,
 sourceType varchar(20),
-nearestSubstation varchar(40),
-latitudeSS float,
-longitudeSS float,
-plantOwner varchar(40),
-plantCapacity float
+nearestSubstation varchar(60),
+latitudeSS double,
+longitudeSS double,
+plantOwner varchar(60),
+plantCapacity double
 );
 """
 pwd = "0409"
@@ -52,7 +52,7 @@ def createTable():
     except Exception as exp:
         tableError = str(exp)
     if tableError == "1146 (42S02): Table 'psdatabase.data' doesn't exist":
-        tableCursor.execute("create table data(location varchar(40), latitudeL float, longitudeL float, sourceType varchar(20), nearestSubstation varchar(40), latitudeSS float, longitudeSS float, plantOwner varchar(40), plantCapacity float);")
+        tableCursor.execute("create table data(location varchar(60), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(60), latitudeSS double, longitudeSS double, plantOwner varchar(60), plantCapacity double);")
         print(tableCursor.fetchall())
         connection.commit()
         print("Table created")
@@ -63,23 +63,23 @@ def createTable():
 
 
 def get_columns_query(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
-        if limit is not None:
-            if not (isinstance(limit, (int, str))): return []
-        query = f'select {", ".join(columns)} from {tablename}'
-        if constraint is not None:
-            if constraint[1] == "NULL":
-                query += f" where {constraint[0]} is null"
-            else:
-                query += f" where {constraint[0]} like \"{constraint[1]}\""
-        if order_by_col is not None:
-            if len(order_by_col) == len(order_by_asc): 
-                query += ' order by'
-                for (col_name, order) in zip(order_by_col, order_by_asc):
-                    query += f" {col_name} {'asc' if order else 'desc'}"
-        if limit is not None:
-            query += f" limit {limit!s}"
-        query += ';'
-        return query
+    if limit is not None:
+        if not (isinstance(limit, (int, str))): return []
+    query = f'select {", ".join(columns)} from {tablename}'
+    if constraint is not None:
+        if constraint[1] == "NULL":
+            query += f" where {constraint[0]} is null"
+        else:
+            query += f" where {constraint[0]} like \"{constraint[1]}\""
+    if order_by_col is not None:
+        if len(order_by_col) == len(order_by_asc): 
+            query += ' order by'
+            for (col_name, order) in zip(order_by_col, order_by_asc):
+                query += f" {col_name} {'asc' if order else 'desc'}"
+    if limit is not None:
+         query += f" limit {limit!s}"
+    query += ';'
+    return query
 
     
 def get_columns(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
@@ -101,8 +101,20 @@ def readFile():
         for j in i.split('|'):
             tempList.append(j.strip())
         dataList.append(tempList)
-    print(dataList)
     textFile.close()
+    return
+
+
+def addValues():
+    global dataList
+    inputCursor = connection.cursor()
+    for i in range(len(dataList)):
+        if dataList[i][7] == "None":
+            dataList[i].append("NULL")
+        tempList = dataList[i]
+        inputCursor.execute(f"insert into data values(\"{tempList[0]}\", {tempList[1]}, {tempList[2]}, \"{tempList[3]}\", \"{tempList[4]}\", {tempList[5]}, {tempList[6]}, \"{tempList[7]}\", {tempList[8]});")
+        connection.commit()
+    inputCursor.close()
     return
 
 
@@ -111,3 +123,4 @@ def readFile():
 init_db()
 createTable()
 readFile()
+addValues()

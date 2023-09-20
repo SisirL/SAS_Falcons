@@ -9,14 +9,14 @@ Location|Latitude|Longitude|Type of source|Nearest Power Substation|Latitude of 
 
 Create Table command:
 create table data(
-location varchar(60),
+location varchar(80),
 latitudeL double,
 longitudeL double,
 sourceType varchar(20),
-nearestSubstation varchar(60),
+nearestSubstation varchar(80),
 latitudeSS double,
 longitudeSS double,
-plantOwner varchar(60),
+plantOwner varchar(80),
 plantCapacity double
 );
 """
@@ -39,26 +39,6 @@ def init_db():
         dbCursor.close()
     if dbError != None and dbError != "1049 (42000): Unknown database 'psdatabase'":
         print("Unsolvable Error Encountered")
-    return
-
-
-def createTable():
-    tableCursor = connection.cursor()
-    tableError = None
-    tableCursor.execute("use psdatabase;")
-    try:
-        tableCursor.execute("select * from data;")
-        print(tableCursor.fetchall())
-    except Exception as exp:
-        tableError = str(exp)
-    if tableError == "1146 (42S02): Table 'psdatabase.data' doesn't exist":
-        tableCursor.execute("create table data(location varchar(60), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(60), latitudeSS double, longitudeSS double, plantOwner varchar(60), plantCapacity double);")
-        print(tableCursor.fetchall())
-        connection.commit()
-        print("Table created")
-    if tableError == None:
-        print("Table detected")
-    tableCursor.close()
     return
 
 
@@ -91,6 +71,26 @@ def get_columns(tablename: str, columns: list, constraint: tuple = None, limit: 
     return data
 
 
+def createTable():
+    tableCursor = connection.cursor()
+    tableError = None
+    tableCursor.execute("use psdatabase;")
+    try:
+        tableCursor.execute("select * from data;")
+        garbage = tableCursor.fetchall()
+    except Exception as exp:
+        tableError = str(exp)
+    if tableError == "1146 (42S02): Table 'psdatabase.data' doesn't exist":
+        tableCursor.execute("create table data(location varchar(80), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(80), latitudeSS double, longitudeSS double, plantOwner varchar(80), plantCapacity double);")
+        print(tableCursor.fetchall())
+        connection.commit()
+        print("Table created")
+    if tableError == None:
+        print("Table detected")
+    tableCursor.close()
+    return
+
+
 def readFile():
     global dataList
     dataList = []
@@ -108,6 +108,8 @@ def readFile():
 def addValues():
     global dataList
     inputCursor = connection.cursor()
+    inputCursor.execute("delete from data;")
+    connection.commit()
     for i in range(len(dataList)):
         if dataList[i][7] == "None":
             dataList[i].append("NULL")
@@ -115,6 +117,7 @@ def addValues():
         inputCursor.execute(f"insert into data values(\"{tempList[0]}\", {tempList[1]}, {tempList[2]}, \"{tempList[3]}\", \"{tempList[4]}\", {tempList[5]}, {tempList[6]}, \"{tempList[7]}\", {tempList[8]});")
         connection.commit()
     inputCursor.close()
+    print("Data has been updated")
     return
 
 

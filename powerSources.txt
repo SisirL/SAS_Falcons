@@ -19,3 +19,12 @@ Madurai-Vaigai|9.9174|77.3406|Hydro|Powergrid Thiruvalam Substation, Thenpalli|1
 Theni-Suruliyar|10.1920|77.3608|Hydro|Electric Substation Kamatchipuram, Theni|9.875457298502967|77.46101157912649|Suruliyar Hydroelectric Project|35000000
 Tirunelveli-Servalar|10.2766|77.3866|Hydro|Electricity Board Sub Station, NH 44, Reddiarpatti, Tirunelveli|8.665378042175403|77.73811216932025|Servalar Hydroelectric Project|20000000
 Kanyakumari-Kodayar|9.0738|77.2559|Hydro|Kanyakumari TNEB 33/11KV Indoor Sub-Station, near Light House|8.33130047593729|77.48133032144007|None
+Tuticorin|8.7642|78.1348|Wind|230/110 KV SIPCOT Sub Station/ MEELAVITTAN, Milavittan, Thoothukudi|9.056991167721405|78.06815950193177|None
+Ramanathapuram|9.3887|78.8333|Wind|TNEB Sub Station, Unnamed Road, Amrita Nagar, Pattinamkattan, Ramanathapuram|9.457193913243191|78.84360115592933|None
+Nagapattinam|10.7641|79.8416|Wind|110 KV Nagapatnam Substation, Ivanallur, Nagapattinam|10.832100913316221|79.82600124131619|None
+Kanyakumari|8.0859|77.5471|Wind|Eppodumvenran Power Plant|9.24122939723292|78.03520378516049|Muppandal Windfarm|1500000000
+Pollachi|10.6573|77.0060|Wind|Electricity Substation, Kambalapatti, Angalakurichi, Coimbatore, SH-78, Pollachi Valparai Road, Pollachi|10.689350599089442|77.01247474429825|None
+Valparai|10.3784|76.9585|Wind|TNEB substation, Iyerpadi|10.36228059990849|76.98007860650695|None
+Coimbatore|11.0168|76.9558|Wind|EB Substation Peelamedu|11.130894105259216|77.0185723459008|None
+Tirupur|11.1096|77.3405|Wind|110/11 KV SUBSTATION, KUMARNAGAR, TIRUPUR, TNEB, Kumar Nagar, Park Avenue, Tiruppur|11.245243054454207|77.31703494221668|Shalivahana Wind|20400000
+Kayathar|8.8290|77.8221|Wind|400 KV Sub Station TNEB Kayathar, Panikkarkulam|9.153740440374355|77.72837109093628|Kayathar Subhash|30000000

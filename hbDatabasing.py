@@ -2,9 +2,13 @@ from turtle import distance
 import mysql.connector as connector
 import matplotlib.pyplot as plt
 import numpy as np
+import smtplib
+from email.message import EmailMessage
+import random
 
 
 """
+User - tEst, password - pAss
 Exceptions:
 Exception for database does not exist - 1049 (42000): Unknown database 'psdatabase'
 Exception for table does not exist - 1146 (42S02): Table 'psdatabase.data' doesn't exist
@@ -49,17 +53,15 @@ def init_db():
     dbError = None
     try:
         connection = connector.connect(host="localhost", user="root", password=pwd, database="psdatabase")
-        print("Connected to database")
+        # print("Connected to database")
     except Exception as exp:
         dbError = str(exp)
     if dbError == "1049 (42000): Unknown database 'psdatabase'":
         connection = connector.connect(host="localhost", user="root", password=pwd)
         dbCursor = connection.cursor()
         dbCursor.execute("create database PSDataBase;")
-        print("Database Created")
+        # print("Database Created")
         dbCursor.close()
-    if dbError != None and dbError != "1049 (42000): Unknown database 'psdatabase'":
-        print("Unsolvable Error Encountered")
         
     createTable("users", "emailID varchar(40), pass varchar(40)")
     createTable("plantStationData", "location varchar(150), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(150), latitudeSS double, longitudeSS double, plantOwner varchar(150), plantCapacity double")
@@ -111,12 +113,30 @@ def createTable(tableName, columns):
         tableError = str(exp)
     if tableError == f"1146 (42S02): Table 'psdatabase.{tableName.lower()}' doesn't exist":
         tableCursor.execute(f"create table {tableName}({columns});")
-        print(tableCursor.fetchall())
+        # print(tableCursor.fetchall())
         connection.commit()
-        print(f"{tableName} table created")
-    if tableError == None:
-        print(f"{tableName} table detected")
+        # print(f"{tableName} table created")
     tableCursor.close()
+    return
+
+
+def emailClient(receiver):
+    server = smtplib.SMTP(host="smtp.gmail.com", port=587)
+    server.ehlo()
+    server.starttls()
+    sender = "sujay.karpur2@gmail.com"
+    passwd = "ztspqpohmfqthzhg"
+    # receiver = "bobisasecretagent@gmail.com"
+
+    msg = EmailMessage()
+    msg.set_content(f"Your Sustainable Energy Interface OTP is {random.randint(1000,9999)}")
+    msg['Subject'] = "SEI One-Time Password"
+    msg['From'] = "sujay.karpur2@gmail.com"
+    msg['To'] = receiver
+
+    server.login(sender, passwd)
+    server.send_message(msg)
+    server.close()
     return
 
 
@@ -144,7 +164,7 @@ def addPlantValues(dataList):
         inputCursor.execute(f"insert into plantStationData values(\"{tempList[0]}\", {tempList[1]}, {tempList[2]}, \"{tempList[3]}\", \"{tempList[4]}\", {tempList[5]}, {tempList[6]}, \"{tempList[7]}\", {tempList[8]});")
         connection.commit()
     inputCursor.close()
-    print("plantStationData has been updated")
+    # print("plantStationData has been updated")
     return
 
 
@@ -156,7 +176,7 @@ def addDemandValues(dataList):
         inputCursor.execute(f"insert into demandData values(\"{i[0]}\", {i[1]}, {i[2]}, {i[3]}, {i[4]})")
         connection.commit()
     inputCursor.close()
-    print("demandData has been updated")
+    # print("demandData has been updated")
     return
     
 

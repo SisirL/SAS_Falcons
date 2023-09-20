@@ -15,13 +15,13 @@ class App:
             ctypes.windll.shcore.SetProcessDpiAwareness(True)
         
         self.main_menu = Menu(self.root)
-        self.root.configure(menu=self.main_menu)
-        self.menu_view = Menu(self.main_menu, tearoff=False)
-        self.menu_themes = Menu(self.menu_view, tearoff=False)
-        self.main_menu.add_cascade(label="View", menu=self.menu_view)
-        self.menu_view.add_cascade(label="Choose Theme...", menu=self.menu_themes)
-        self.menu_themes.add_command(label="Sunvalley dark", command=lambda theme="dark":self.adjust_theme(newtheme=theme))
-        self.menu_themes.add_command(label="Sunvalley light", command=lambda theme="light":self.adjust_theme(newtheme=theme))
+        self.root.configure(menu = self.main_menu)
+        self.menu_view = Menu(self.main_menu, tearoff = False)
+        self.menu_themes = Menu(self.menu_view, tearoff = False)
+        self.main_menu.add_cascade(label = "View", menu = self.menu_view)
+        self.menu_view.add_cascade(label = "Choose Theme...", menu = self.menu_themes)
+        self.menu_themes.add_command(label = "Sunvalley dark", command = lambda theme = "dark":self.adjust_theme(newtheme = theme))
+        self.menu_themes.add_command(label = "Sunvalley light", command = lambda theme = "light":self.adjust_theme(newtheme = theme))
         self.current_theme = "Sunvalley light"
         self.init_map()
 
@@ -48,11 +48,11 @@ class App:
 
     def get_data(self) -> None:
         from hbDatabasing import get_columns
-        self.lst = get_columns(tablename="data", columns=["LatitudeL", "LongitudeL", "Location", "LatitudeSS", "LongitudeSS"], constraint=("SourceType", "Solar"))
+        self.lst = get_columns(tablename = "data", columns = ["LatitudeL", "LongitudeL", "Location", "LatitudeSS", "LongitudeSS"])
 
 
     def init_map(self) -> None:
-        mapview = tkmv.TkinterMapView(self.root, corner_radius=5)
+        mapview = tkmv.TkinterMapView(self.root, corner_radius = 5)
         self.get_data()
         # newicon = ImageTk.PhotoImage(Image.open("Map-Pointer.png").resize((28, 28)))
         self.marker_list = []
@@ -61,7 +61,7 @@ class App:
             temp = temp + (mapview.set_marker(item[0], item[1], ""), )
             temp = temp + (mapview.set_marker(item[3], item[4], item[2]), )
             self.marker_list.append(temp[1:])
-        mapview.place(relx=0.1, rely=0.05, relheight=0.9, relwidth=0.8)
+        mapview.place(relx = 0.1, rely = 0.05, relheight = 0.9, relwidth = 0.8)
         mapview.set_position(10.4097, 78.3643)
         mapview.set_zoom(7)
 

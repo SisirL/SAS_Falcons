@@ -10,3 +10,12 @@ Raja Annamalai Puram|13.0277|80.2593|Solar|TNEB Substation R.K Puram|19.30811567
 Thirumangalam|9.8417|77.9831|Solar|TNEB Substation Thirumangalam|13.11591433236724|80.20159105706868|Naturo Energy Tech|350000000
 Pallipalayam|11.0734|77.9945|Solar|TNEB Substation Pallipalayam|11.50735772183619|77.77894922672856|None
 Kilpauk|13.0846|80.2496|Solar|Kilpauk Substation |13.093926838453998|80.23342354367374|Grand Solar Private Limited|56000000
+Valparai|10.3784|76.9585|Hydro|TNEB substation, Iyerpadi|10.36228059990849|76.98007860650695|None
+Kodaikanal|10.2381|77.4892|Hydro|Electricity Kodaikanal, Kodaikanal|10.324839721377911|77.53233220372054|None
+Nilgiris-Bhavani River|11.4257|77.5684|Hydro|Electricity Substation|11.499826253893282|76.9217862901895|Kundah Hydroelectric Project|585000000
+Courtallam Waterfall|9.4246|77.3077|Hydro|Courtallam EB Office, Courtallam|9.128137288356546|77.27094334268028|None
+Cauvery Basin-Bhavani River|11.2967|77.2175|Hydro|Bhavani sagar 110 KV SS|11.556451999065347|77.16175306156134|Lower Bhavani Hydroelectric Project|8000000
+Madurai-Vaigai|9.9174|77.3406|Hydro|Powergrid Thiruvalam Substation, Thenpalli|13.05131411810866|79.24604121406468|Vaigai Hydroelectric Project|11000000
+Theni-Suruliyar|10.1920|77.3608|Hydro|Electric Substation Kamatchipuram, Theni|9.875457298502967|77.46101157912649|Suruliyar Hydroelectric Project|35000000
+Tirunelveli-Servalar|10.2766|77.3866|Hydro|Electricity Board Sub Station, NH 44, Reddiarpatti, Tirunelveli|8.665378042175403|77.73811216932025|Servalar Hydroelectric Project|20000000
+Kanyakumari-Kodayar|9.0738|77.2559|Hydro|Kanyakumari TNEB 33/11KV Indoor Sub-Station, near Light House|8.33130047593729|77.48133032144007|None

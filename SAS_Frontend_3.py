@@ -169,7 +169,7 @@ class App:
             # capacity:
             if lst[0][2] is not None:
                 capacity = list(str(int(float(lst[0][2]))))
-                for i in range(-3, -1*len(capacity), -4):
+                for i in range(-3, -1*len(capacity)-1, -4):
                     capacity.insert(i, ',')
                 capacity = ''.join(capacity)
             else:

@@ -81,7 +81,7 @@ def createTable():
         garbage = tableCursor.fetchall()
     except Exception as exp:
         tableError = str(exp)
-    if tableError == "1146 (42S02): Table 'psdatabase.plantStationData' doesn't exist":
+    if tableError == "1146 (42S02): Table 'psdatabase.plantstationdata' doesn't exist":
         tableCursor.execute("create table plantStationData(location varchar(150), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(150), latitudeSS double, longitudeSS double, plantOwner varchar(150), plantCapacity double);")
         print(tableCursor.fetchall())
         connection.commit()

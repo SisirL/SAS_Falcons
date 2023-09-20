@@ -56,26 +56,20 @@ class App:
         self.mapview.set_zoom(7)
 
     def _show_marker_info(self, event_marker) -> None:
-        # print(f'{event_marker!s} clicked')
-        print(event_marker.data)
         info = event_marker.data
-        # create frame above mouse
-        # display location, source-type, plant-exists, plant-capacity
         if event_marker._is_displaying:
             event_marker.display_window.destroy()
             event_marker._is_displaying = False
         else:
             lst = get_columns(tablename='data', columns=['Location', 'SourceType', 'PlantCapacity'], constraint=('Location', info[2]))
-            # x = event_marker.x
-            # y = event_marker.y
-            event_marker.display_window = ttk.Frame(event_marker, border=15, takefocus=False)
-            l1 = ttk.Label(event_marker.display_window, text=lst[0])
-            l2 = ttk.Label(event_marker.display_window, text=lst[1]+' Power Plant')
-            l3 = ttk.Label(event_marker.display_window, text='Capacity: '+lst[2])
+            event_marker.display_window = ttk.Frame(self.root, border=15, takefocus=False)
+            l1 = ttk.Label(event_marker.display_window, text=f'{lst[0][0]!s}')
+            l2 = ttk.Label(event_marker.display_window, text=f'{lst[0][1]!s} Power Plant')
+            l3 = ttk.Label(event_marker.display_window, text=f'Capacity: {lst[0][2]!s}W')
             l1.pack(anchor='w')
             l2.pack(anchor='w')
             l3.pack(anchor='w')
-            event_marker.display_window.place(x=self.root.winfo_x, y=self.root.winfo_y, anchor='s')
+            event_marker.display_window.place(x=self.root.winfo_pointerx()-self.root.winfo_x(), y=self.root.winfo_pointery()-self.root.winfo_y(), anchor='n')
             event_marker._is_displaying = True
 
     def source_choice_ui(self) -> None:
@@ -95,37 +89,32 @@ class App:
             for item in self.get_data(sourcetype='solar'):
                 temp = (0, )
                 temp = temp + (self.mapview.set_marker(item[0], item[1], item[2], command=self._show_marker_info), )
-                temp = temp + (self.mapview.set_marker(item[3], item[4], '', command=self._show_marker_info), )
+                temp = temp + (self.mapview.set_marker(item[3], item[4], item[2], command=self._show_marker_info), )
                 temp[1].data = item
                 temp[2].data = item
                 temp[1]._is_displaying = False
                 temp[2]._is_displaying = False
-                # temp[1].command(self._show_marker_info)
-                # temp[2].command(self._show_marker_info)
-                # mk1 = self.mapview.set_marker(13.12, 77.69)
                 self.marker_list.append(temp)
         elif sourcetype.lower() == 'wind':
             for item in self.get_data(sourcetype='wind'):
                 temp = (0, )
                 temp = temp + (self.mapview.set_marker(item[0], item[1], item[2], command=self._show_marker_info), )
-                temp = temp + (self.mapview.set_marker(item[3], item[4], '', command=self._show_marker_info), )
+                temp = temp + (self.mapview.set_marker(item[3], item[4], item[2], command=self._show_marker_info), )
                 temp[1].data = item
+                temp[2].data = item
                 temp[1]._is_displaying = False
                 temp[2]._is_displaying = False
-                # temp[1].command(self._show_marker_info)
-                # temp[2].command(self._show_marker_info)
                 self.marker_list.append(temp)
         elif sourcetype.lower() == 'hydro':
             self.marker_list = []
             for item in self.get_data(sourcetype='hydro'):
                 temp = (0, )
                 temp = temp + (self.mapview.set_marker(item[0], item[1], item[2], command=self._show_marker_info), )
-                temp = temp + (self.mapview.set_marker(item[3], item[4], '', command=self._show_marker_info), )
+                temp = temp + (self.mapview.set_marker(item[3], item[4], item[2], command=self._show_marker_info), )
                 temp[1].data = item
+                temp[2].data = item
                 temp[1]._is_displaying = False
                 temp[2]._is_displaying = False
-                # temp[1].command(self._show_marker_info)
-                # temp[2].command(self._show_marker_info)
                 self.marker_list.append(temp)
 
     def adjust_theme(self, newtheme: str) -> None:

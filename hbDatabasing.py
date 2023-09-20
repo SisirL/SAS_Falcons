@@ -27,12 +27,12 @@ def init_db():
     global connection
     dbError = None
     try:
-        connection = connector.connect(host = "localhost", user = "root", password = pwd, database = "psdatabase")
+        connection = connector.connect(host="localhost", user="root", password=pwd, database="psdatabase")
         print("Connected")
     except Exception as exp:
         dbError = str(exp)
     if dbError == "1049 (42000): Unknown database 'psdatabase'":
-        connection = connector.connect(host = "localhost", user = "root", password = pwd)
+        connection = connector.connect(host="localhost", user="root", password=pwd)
         dbCursor = connection.cursor()
         dbCursor.execute("create database PSDataBase;")
         print("Database Created")
@@ -42,7 +42,7 @@ def init_db():
     return
 
 
-def get_columns_query(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
+def get_columns_query(tablename: str, columns: list, constraint: tuple=None, limit: int|str=None, order_by_col: list[str,]=None, order_by_asc: list[bool,]=None) -> str:
     if limit is not None:
         if not (isinstance(limit, (int, str))): return []
     query = f'select {", ".join(columns)} from {tablename}'
@@ -62,7 +62,7 @@ def get_columns_query(tablename: str, columns: list, constraint: tuple = None, l
     return query
 
     
-def get_columns(tablename: str, columns: list, constraint: tuple = None, limit: int|str = None, order_by_col: list[str,] = None, order_by_asc: list[bool,] = None) -> str:
+def get_columns(tablename: str, columns: list, constraint: tuple=None, limit: int|str=None, order_by_col: list[str,]=None, order_by_asc: list[bool,]=None) -> str:
     query = get_columns_query(tablename=tablename, columns=columns, constraint=constraint, limit=limit, order_by_col=order_by_col, order_by_asc=order_by_asc)
     cursor = connection.cursor()
     cursor.execute(query)

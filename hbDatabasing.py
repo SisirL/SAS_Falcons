@@ -195,7 +195,10 @@ def closestSubstation(x, y):
     for substationInfo in data:
         distanceSS.append(findDistance(x, y, substationInfo[1], substationInfo[2]))
         listSS.append(substationInfo[0])
-    return listSS[distanceSS.index(min(distanceSS))]
+    subStation = listSS[distanceSS.index(min(distanceSS))]
+    for i in data:
+        if i[0] == subStation:
+            return i[1], i[2]
 
 
 def demandIncrease(demandLocation):
@@ -224,3 +227,4 @@ def graphing(demandLoc):
 
 if __name__ == "__main__":
     init_db()
+

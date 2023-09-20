@@ -72,17 +72,17 @@ def get_columns(tablename: str, columns: list, constraint: tuple=None, limit: in
     return data
 
 
-def createTable():
+def createTable(tableName, columns):
     tableCursor = connection.cursor()
     tableError = None
     tableCursor.execute("use psdatabase;")
     try:
-        tableCursor.execute("select * from plantStationData;")
+        tableCursor.execute(f"select * from {tableName};")
         garbage = tableCursor.fetchall()
     except Exception as exp:
         tableError = str(exp)
-    if tableError == "1146 (42S02): Table 'psdatabase.plantstationdata' doesn't exist":
-        tableCursor.execute("create table plantStationData(location varchar(150), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(150), latitudeSS double, longitudeSS double, plantOwner varchar(150), plantCapacity double);")
+    if tableError == f"1146 (42S02): Table 'psdatabase.{tableName.lower()}' doesn't exist":
+        tableCursor.execute(f"create table {tableName}({columns});")
         print(tableCursor.fetchall())
         connection.commit()
         print("Table created")
@@ -92,10 +92,9 @@ def createTable():
     return
 
 
-def readFile():
-    global dataList
+def readFile(fileName):
     dataList = []
-    textFile = open("powerSources.txt", 'r')
+    textFile = open(f"{fileName}.txt", 'r')
     fileList = textFile.readlines()
     for i in fileList:
         tempList = []
@@ -103,11 +102,10 @@ def readFile():
             tempList.append(j.strip())
         dataList.append(tempList)
     textFile.close()
-    return
+    return dataList
 
 
-def addValues():
-    global dataList
+def addPlantValues(dataList):
     inputCursor = connection.cursor()
     inputCursor.execute("delete from plantStationData;")
     connection.commit()
@@ -148,6 +146,6 @@ def closestSubstation(x, y):
 
 if __name__ == "__main__":
     init_db()
-    createTable()
-    readFile()
-    addValues()
+    createTable("plantStationData", "location varchar(150), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(150), latitudeSS double, longitudeSS double, plantOwner varchar(150), plantCapacity double")
+    plantDataList = readFile("powerSources")
+    addPlantValues(plantDataList)

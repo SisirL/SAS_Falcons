@@ -3,7 +3,6 @@ import tkintermapview as tkmv
 import sys
 import platform
 import sv_ttk
-from PIL import Image, ImageTk
 from hbDatabasing import init_db, get_columns
 
 class App:
@@ -47,7 +46,7 @@ class App:
     8 PlantCapacity
     """
     def get_data(self, sourcetype: str) -> list:
-        return get_columns(tablename='data', columns=['LatitudeL', 'LongitudeL', 'Location', 'LatitudeSS', 'LongitudeSS'], constraint=('SourceType', sourcetype))
+        return get_columns(tablename='plantStationData', columns=['LatitudeL', 'LongitudeL', 'Location', 'LatitudeSS', 'LongitudeSS'], constraint=('SourceType', sourcetype))
 
     def init_map(self) -> None:
         self.mapview = tkmv.TkinterMapView(self.root, corner_radius=5)
@@ -61,7 +60,7 @@ class App:
             event_marker.display_window.destroy()
             event_marker._is_displaying = False
         else:
-            lst = get_columns(tablename='data', columns=['Location', 'SourceType', 'PlantCapacity'], constraint=('Location', info[2]))
+            lst = get_columns(tablename='plantStationData', columns=['Location', 'SourceType', 'PlantCapacity'], constraint=('Location', info[2]))
             event_marker.display_window = ttk.Frame(self.root, border=15, takefocus=False)
             l1 = ttk.Label(event_marker.display_window, text=f'{lst[0][0]!s}')
             l2 = ttk.Label(event_marker.display_window, text=f'{lst[0][1]!s} Power Plant')

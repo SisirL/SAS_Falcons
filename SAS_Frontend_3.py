@@ -4,6 +4,8 @@ import sys
 import platform
 import sv_ttk
 from hbDatabasing import init_db, get_columns
+
+
 """
 db = psdatabase
 table = plantStationdata
@@ -18,11 +20,12 @@ table = plantStationdata
 8 PlantCapacity
 """
 
+
 class App:
     def __init__(self) -> None:
         self.root = Tk()
         self.root.state('zoomed')
-        self.root.title('SAS Falcons!!')
+        self.root.title('Sustainable Energy Interface')
         if platform.system() == 'Windows':
             import ctypes
             ctypes.windll.shcore.SetProcessDpiAwareness(True)
@@ -57,11 +60,13 @@ class App:
         self.login()
         mainloop()
 
+
     def login_successful(self) -> None:
         self.init_map()
         self.source_choice_ui()
         self.toggle_demand_display()
     
+
     def login(self, approved:bool=False) -> bool:
         if approved: return True
         self.frm_login = ttk.LabelFrame(self.root)
@@ -78,11 +83,13 @@ class App:
         self.btn_proceed.grid(row=3, column=1, columnspan=2)
         self.frm_login.pack(pady=300)
 
+
     def approve_login(self) -> None:
         if (self.ent_email.get(), self.ent_pwd.get()) in get_columns(tablename='users', columns=['emailid', 'pass']):
             self.login_successful()
         else:
             messagebox.showerror('Login Failed', 'The login credentials were incorrect.')
+
 
     def show_setup(self, sourcetype: str) -> None:
         if sourcetype.lower() == 'solar-s':
@@ -140,14 +147,17 @@ class App:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
 
+
     def get_data(self, sourcetype: str) -> list:
         return get_columns(tablename='plantstationdata', columns=['LatitudeL', 'LongitudeL', 'Location', 'LatitudeSS', 'LongitudeSS', 'PlantOwner', 'NearestSubstation'], constraint=('SourceType', sourcetype))
+
 
     def init_map(self) -> None:
         self.mapview = tkmv.TkinterMapView(self.root, corner_radius=5)
         self.mapview.place(relx=0.1, rely=0.05, relheight=0.9, relwidth=0.7)
         self.mapview.set_position(10.4097, 78.3643)
         self.mapview.set_zoom(7)
+
 
     def _show_marker_info(self, event_marker) -> None:
         info = event_marker.data
@@ -186,8 +196,10 @@ class App:
             event_marker.display_window.place(x=self.root.winfo_pointerx()-self.root.winfo_x(), y=self.root.winfo_pointery()-self.root.winfo_y(), anchor='center')
             event_marker._is_displaying = True
         
+
     def delete_marker_info(self, event: Event):
         event.widget.master.destroy()
+
 
     def source_choice_ui(self) -> None:
         self.btn_solar = ttk.Button(self.root, text='Solar', command=lambda sourcetype='Solar':self.select_source(sourcetype), takefocus=False)
@@ -199,6 +211,7 @@ class App:
         self.btn_wind.place(relx=0.85, relwidth=0.1, rely=0.3)
         self.btn_hydro.place(relx=0.85, relwidth=0.1, rely=0.4)
         self.btn_demand.place(relx=0.85, relwidth=0.1, rely=0.5)
+
 
     def select_source(self, sourcetype: str) -> None:
         self.mapview.delete_all_marker()
@@ -245,6 +258,7 @@ class App:
                 temp[2]._is_displaying = False
                 self.marker_list.append(temp)
 
+
     def toggle_demand_display(self) -> None:
         if self._is_demand_displayed:
             for marker in self._demand_markers_list:
@@ -254,6 +268,7 @@ class App:
             for item in get_columns(tablename='demanddata', columns=['location', 'latitude', 'longitude']):
                 self._demand_markers_list.append(self.mapview.set_marker(float(item[1]), float(item[2]), item[0]))
             self._is_demand_displayed = True
+
 
     def adjust_theme(self, newtheme: str) -> None:
         sv_ttk.set_theme(newtheme)

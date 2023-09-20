@@ -1,7 +1,7 @@
 Steps to set-up a Hydroelectric Plant:-
-i)    Site Identification 
-ii)    Survey & Investigation 
-iii)    Project Planning and Project Optimisation Studies for determination of optimum Project Parameters
-iv)    Assessment of power & energy benefits
-v)    Economic Evaluation 
-vi)    Preparation of Detailed Project Report
+i)Site Identification 
+ii)Survey & Investigation 
+iii)Project Planning and Project Optimisation Studies for determination of optimum Project Parameters
+iv)Assessment of power & energy benefits
+v)Economic Evaluation 
+vi)Preparation of Detailed Project Report

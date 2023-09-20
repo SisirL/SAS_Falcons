@@ -88,55 +88,55 @@ class App:
         if sourcetype.lower() == 'solar-s':
             help_window = Toplevel(self.root)
             help_window.title('Guidance for New Solar Power Plants')
-            help_window.minsize(400, 300)
+            help_window.minsize(1050, 300)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Setup-Solar.txt', 'r') as file:
+            with open('HackBattle//Setup-Solar.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         elif sourcetype.lower() == 'solar-l':
             help_window = Toplevel(self.root)
             help_window.title('Legal Requirements for New Solar Power Plants')
-            help_window.minsize(400, 300)
+            help_window.minsize(500, 300)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Legal-Solar.txt', 'r') as file:
+            with open('HackBattle//Legal-Solar.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         elif sourcetype.lower() == 'hydel-s':
             help_window = Toplevel(self.root)
             help_window.title('Guidance for New Hydel Power Plants')
-            help_window.minsize(400, 300)
+            help_window.minsize(700, 200)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Setup-Hydel.txt', 'r') as file:
+            with open('HackBattle//Setup-Hydel.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         elif sourcetype.lower() == 'hydel-l':
             help_window = Toplevel(self.root)
             help_window.title('Legal Reuirements for New Hydel Power Plants')
-            help_window.minsize(400, 300)
+            help_window.minsize(800, 400)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Legal-Hydel.txt', 'r') as file:
+            with open('HackBattle//Legal-Hydel.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         elif sourcetype.lower() == 'wind-l':
             help_window = Toplevel(self.root)
-            help_window.title('Legal Requirements for New Hydel Power Plants')
-            help_window.minsize(400, 400)
+            help_window.title('Legal Requirements for New Wind Power Plants')
+            help_window.minsize(900, 500)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Legal-Hydel.txt', 'r') as file:
+            with open('HackBattle//Legal-Hydel.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
         elif sourcetype.lower() == 'wind-s':
             help_window = Toplevel(self.root)
             help_window.title('Guidance for New Wind Farms')
-            help_window.minsize(400, 300)
+            help_window.minsize(800, 300)
             help_window.focus_set()
             l1 = ttk.Label(help_window)
-            with open('Setup-Wind.txt', 'r') as file:
+            with open('HackBattle//Setup-Wind.txt', 'r') as file:
                 l1.configure(text=file.read())
             l1.place(relx=0.02, rely=0.02, relwidth=0.96, relheight=0.96)
 

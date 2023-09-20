@@ -3,26 +3,26 @@ Kamuthi|9.4097|78.3643|Solar|Kamuthi 400kV Substation Sengappadai|9.469129950845
 Thanjavur|10.7867|79.1378|Solar|TNEB 110 KV SUB STATION Jayalakshmi Nagar|10.754091382578082|79.09431893681109|None
 Coimbatore|11.0168|76.9558|Solar|EB Substation Peelamedu|11.130894105259216|77.0185723459008|Motosun Energy System|25000
 Tiruchirappalli|10.7905|78.7047|Solar|TNEB Substation Tiruchirappalli|10.7895610967378|78.72451900709989|None
-Tiruvallur|13.1422|79.9073|Solar|TNEB Substation Tiruvallur|13.304225253923859|80.30119222102648|Winpro Power Solutions|100000
+Tiruvallur|13.1422|79.9073|Solar|TNEB Substation Tiruvallur|13.189608538059|79.92497590178726|Winpro Power Solutions|100000
 Kanchipuram|12.8393|79.7036|Solar|TNEB Substation Kanchipuram|12.444260719474789|80.0204347134951|None
 Salem|11.6643|78.1460|Solar|TNEB Substation Salem|11.722068192840178|77.99118599438071|Abiraams Associate Solar Energy|300000
-Raja Annamalai Puram|13.0277|80.2593|Solar|TNEB Substation R.K Puram|19.308115673967777|84.52241370434993|Renewable Energy India Expo|40000
-Thirumangalam|9.8417|77.9831|Solar|TNEB Substation Thirumangalam|13.11591433236724|80.20159105706868|Naturo Energy Tech|350000000
+Raja Annamalai Puram|13.0277|80.2593|Solar|TNEB Substation R.K Puram|13.08053|80.24614|Renewable Energy India Expo|40000
+Thirumangalam|9.8417|77.9831|Solar|TNEB Substation Thirumangalam|9.83743|77.99035|Naturo Energy Tech|350000000
 Pallipalayam|11.0734|77.9945|Solar|TNEB Substation Pallipalayam|11.50735772183619|77.77894922672856|None
 Kilpauk|13.0846|80.2496|Solar|Kilpauk Substation |13.093926838453998|80.23342354367374|Grand Solar Private Limited|56000000
 Valparai|10.3784|76.9585|Hydro|TNEB substation, Iyerpadi|10.36228059990849|76.98007860650695|None
 Kodaikanal|10.2381|77.4892|Hydro|Electricity Kodaikanal, Kodaikanal|10.324839721377911|77.53233220372054|None
-Nilgiris-Bhavani River|11.4257|77.5684|Hydro|Electricity Substation|11.499826253893282|76.9217862901895|Kundah Hydroelectric Project|585000000
+Nilgiris-Bhavani River|11.4257|77.5684|Hydro|Electricity Substation|11.556451999065347|77.16175306156134|Kundah Hydroelectric Project|585000000
 Courtallam Waterfall|9.4246|77.3077|Hydro|Courtallam EB Office, Courtallam|9.128137288356546|77.27094334268028|None
-Cauvery Basin-Bhavani River|11.2967|77.2175|Hydro|Bhavani sagar 110 KV SS|11.556451999065347|77.16175306156134|Lower Bhavani Hydroelectric Project|8000000
-Madurai-Vaigai|9.9174|77.3406|Hydro|Powergrid Thiruvalam Substation, Thenpalli|13.05131411810866|79.24604121406468|Vaigai Hydroelectric Project|11000000
-Theni-Suruliyar|10.1920|77.3608|Hydro|Electric Substation Kamatchipuram, Theni|9.875457298502967|77.46101157912649|Suruliyar Hydroelectric Project|35000000
-Tirunelveli-Servalar|10.2766|77.3866|Hydro|Electricity Board Sub Station, NH 44, Reddiarpatti, Tirunelveli|8.665378042175403|77.73811216932025|Servalar Hydroelectric Project|20000000
-Kanyakumari-Kodayar|9.0738|77.2559|Hydro|Kanyakumari TNEB 33/11KV Indoor Sub-Station, near Light House|8.33130047593729|77.48133032144007|None
+Cauvery Basin-Bhavani River|11.2967|77.2175|Hydro|Bhavani sagar 110 KV SS|11.499826253893282|76.9217862901895|Lower Bhavani Hydroelectric Project|8000000
+Madurai-Vaigai|9.9516|78.1113|Hydro|Powergrid Thiruvalam Substation, SH 124, Thenpalli|9.927492877261649|78.11860663335524|Vaigai Hydroelectric Project|11000000
+Theni-Suruliyar|10.1920|77.3608|Hydro|Electric Substation Kamatchipuram, Theni|10.090024058646529|77.44474304321783|Suruliyar Hydroelectric Project|35000000
+Tirunelveli-Servalar|8.6945|77.2937|Hydro|Kanyakumari TNEB 33/11KV Indoor Sub-Station, near Light House|8.6492|77.34631|Servalar Hydroelectric Project|20000000
+Kanyakumari-Kodayar|8.5625|77.2692|Hydro|Kanyakumari TNEB 33/11KV Indoor Sub-Station, near Light House|8.6492|77.34631|None
 Tuticorin|8.7642|78.1348|Wind|230/110 KV SIPCOT Sub Station/ MEELAVITTAN, Milavittan, Thoothukudi|9.056991167721405|78.06815950193177|None
 Ramanathapuram|9.3887|78.8333|Wind|TNEB Sub Station, Unnamed Road, Amrita Nagar, Pattinamkattan, Ramanathapuram|9.457193913243191|78.84360115592933|None
 Nagapattinam|10.7641|79.8416|Wind|110 KV Nagapatnam Substation, Ivanallur, Nagapattinam|10.832100913316221|79.82600124131619|None
-Kanyakumari|8.0859|77.5471|Wind|Eppodumvenran Power Plant|9.24122939723292|78.03520378516049|Muppandal Windfarm|1500000000
+-Kanyakumari|8.0859|77.5471|Wind|Eppodumvenran Power Plant|9.24122939723292|78.03520378516049|Muppandal Windfarm|1500000000
 Pollachi|10.6573|77.0060|Wind|Electricity Substation, Kambalapatti, Angalakurichi, Coimbatore, SH-78, Pollachi Valparai Road, Pollachi|10.689350599089442|77.01247474429825|None
 Valparai|10.3784|76.9585|Wind|TNEB substation, Iyerpadi|10.36228059990849|76.98007860650695|None
 Coimbatore|11.0168|76.9558|Wind|EB Substation Peelamedu|11.130894105259216|77.0185723459008|None

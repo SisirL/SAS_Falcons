@@ -142,7 +142,7 @@ def emailClient(receiver):
 
 def readFile(fileName):
     dataList = []
-    textFile = open(f"{fileName}.txt", 'r')
+    textFile = open(f"HackBattle//{fileName}.txt", 'r')
     fileList = textFile.readlines()
     for i in fileList:
         tempList = []

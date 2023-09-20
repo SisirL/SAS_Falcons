@@ -4,6 +4,7 @@ import sys
 import platform
 import sv_ttk
 from PIL import Image, ImageTk
+from hbDatabasing import get_columns, init_db
 
 class App:
     def __init__(self) -> None:
@@ -13,6 +14,7 @@ class App:
         if platform.system() == "Windows":
             import ctypes
             ctypes.windll.shcore.SetProcessDpiAwareness(True)
+        init_db()
         
         self.main_menu = Menu(self.root)
         self.root.configure(menu=self.main_menu)
@@ -47,7 +49,6 @@ class App:
     
 
     def get_data(self) -> None:
-        from hbDatabasing import get_columns
         self.lst = get_columns(tablename="data", columns=["LatitudeL", "LongitudeL", "Location", "LatitudeSS", "LongitudeSS"])
 
 

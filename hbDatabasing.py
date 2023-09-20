@@ -1,3 +1,4 @@
+from turtle import distance
 import mysql.connector as connector
 """
 Exceptions:
@@ -8,15 +9,15 @@ Format for table:
 Location|Latitude|Longitude|Type of source|Nearest Power Substation|Latitude of SS|Longituse of SS|If active plant exists|If yes power supply capacity else none
 
 Create Table command:
-create table data(
-location varchar(80),
+create table plantStationData(
+location varchar(150),
 latitudeL double,
 longitudeL double,
 sourceType varchar(20),
-nearestSubstation varchar(80),
+nearestSubstation varchar(150),
 latitudeSS double,
 longitudeSS double,
-plantOwner varchar(80),
+plantOwner varchar(150),
 plantCapacity double
 );
 """
@@ -76,12 +77,12 @@ def createTable():
     tableError = None
     tableCursor.execute("use psdatabase;")
     try:
-        tableCursor.execute("select * from data;")
+        tableCursor.execute("select * from plantStationData;")
         garbage = tableCursor.fetchall()
     except Exception as exp:
         tableError = str(exp)
-    if tableError == "1146 (42S02): Table 'psdatabase.data' doesn't exist":
-        tableCursor.execute("create table data(location varchar(80), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(80), latitudeSS double, longitudeSS double, plantOwner varchar(80), plantCapacity double);")
+    if tableError == "1146 (42S02): Table 'psdatabase.plantStationData' doesn't exist":
+        tableCursor.execute("create table plantStationData(location varchar(150), latitudeL double, longitudeL double, sourceType varchar(20), nearestSubstation varchar(150), latitudeSS double, longitudeSS double, plantOwner varchar(150), plantCapacity double);")
         print(tableCursor.fetchall())
         connection.commit()
         print("Table created")
@@ -108,22 +109,45 @@ def readFile():
 def addValues():
     global dataList
     inputCursor = connection.cursor()
-    inputCursor.execute("delete from data;")
+    inputCursor.execute("delete from plantStationData;")
     connection.commit()
     for i in range(len(dataList)):
         if dataList[i][7] == "None":
             dataList[i].append("NULL")
         tempList = dataList[i]
-        inputCursor.execute(f"insert into data values(\"{tempList[0]}\", {tempList[1]}, {tempList[2]}, \"{tempList[3]}\", \"{tempList[4]}\", {tempList[5]}, {tempList[6]}, \"{tempList[7]}\", {tempList[8]});")
+        inputCursor.execute(f"insert into plantStationData values(\"{tempList[0]}\", {tempList[1]}, {tempList[2]}, \"{tempList[3]}\", \"{tempList[4]}\", {tempList[5]}, {tempList[6]}, \"{tempList[7]}\", {tempList[8]});")
         connection.commit()
     inputCursor.close()
     print("Data has been updated")
     return
 
 
-#__main()__
+def findDistance(x1, y1, x2, y2):
+    distance = (((x2 - x1) ** 2) + ((y2 - y1) ** 2)) ** 0.5
+    return distance
 
-init_db()
-createTable()
-readFile()
-addValues()
+
+def demandIncrease(monthlyRateOfIncrease, currentDemand):
+    projectedDemand = [currentDemand]
+    for i in range(1, 60):
+        projectedDemand.append(projectedDemand[i - 1] * (1 + (monthlyRateOfIncrease/100)))
+    return projectedDemand
+
+
+def closestSubstation(x, y):
+    distanceSS = []
+    listSS = []
+    closestCursor = connection.cursor()
+    closestCursor.execute("select nearestSubstation, latitudeSS, longitudeSS from plantStationData;")
+    data = closestCursor.fetchall()
+    for substationInfo in data:
+        distanceSS.append(findDistance(x, y, substationInfo[1], substationInfo[2]))
+        listSS.append(substationInfo[0])
+    return listSS[distanceSS.index(min(distanceSS))]
+
+
+if __name__ == "__main__":
+    init_db()
+    createTable()
+    readFile()
+    addValues()
